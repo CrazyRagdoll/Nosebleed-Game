@@ -7,12 +7,35 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     GameObject CameraTarget;
 
+    //Gonna hard code some boundaries so the camera doesnt look outside of the world
+    float maxX, minX, maxY, minY;
+
+    void Start()
+    {
+        //Hard coded for now, could make it dynamic by background width - camera width etc
+        minX = -13.8f;
+        minY = -1.97f;
+        maxX = 13.8f;
+        maxY = 5.76f;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        //Simple follow the player for now
-        transform.position = new Vector3(CameraTarget.GetComponent<Transform>().position.x, 
-                                        CameraTarget.GetComponent<Transform>().position.y, 
-                                        -10.0f);
+        //Update the cameras position based on the player position!
+        //Doing some simple checks so that the camera doesnt move off the "world"
+        Vector3 targetPos = CameraTarget.GetComponent<Transform>().position;
+        Vector3 newPos = targetPos + new Vector3(0.0f, 0.0f, -10.0f);
+
+        //boundary checks
+        if (targetPos.x < minX) newPos.x = minX;
+        if (targetPos.x > maxX) newPos.x = maxX;
+        if (targetPos.y < minY) newPos.y = minY;
+        if (targetPos.y > maxY) newPos.y = maxY;
+
+        //Update camera pos!
+        transform.position = newPos;
+        
+
     }
 }
