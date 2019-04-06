@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    public Transform anchorPoint;
+    public Transform handlePoint;
     public Transform firePoint;
     public GameObject bulletPrefab;
 
@@ -36,26 +38,27 @@ public class Weapon : MonoBehaviour
         public float bulletSpeed;
 
         //Default values etc
-        public FireMode(ShotType st = ShotType.SINGLE, int fr = 25, int ac = 12, int rt = 100, int bd = 25, int bsa = 3, float bs = 25.0f) 
+        public FireMode(ShotType ShotType = ShotType.SINGLE, int FireRate = 25, int AmmoCapacity = 12, int ReloadTime = 100, int BulletDamage = 25, int BulletSpecialAmmo = 3, float BulletSpeed = 25.0f) 
         {
-            shotType = st;
-            fireRate = fr;
-            ammoCapacity = ac;
-            reloadTime = rt;
-            bulletDamage = bd;
-            bulletSpecialAmount = bsa;
-            bulletSpeed = bs;
+            shotType = ShotType;
+            fireRate = FireRate;
+            ammoCapacity = AmmoCapacity;
+            reloadTime = ReloadTime;
+            bulletDamage = BulletDamage;
+            bulletSpecialAmount = BulletSpecialAmmo;
+            bulletSpeed = BulletSpeed;
         }
     }
 
     //The weapons variables
-    public FireMode fireMode = new FireMode(ShotType.SINGLE, 25, 12, 100, 15, 1, 25.0f);
+    public FireMode fireMode = new FireMode(ShotType.SINGLE, 25, 12, 50, 25, 0, 25);
 
     //Used to moderate weapon functionality, delay shot speed, add reload timer and ammo etc
-    int fireTic = 0, reloadTic = 0, ammoCount = 0;
+    int fireTic = 0, reloadTic = 0;
+    public int ammoCount = 0;
 
     //Use fixed update for tic updates
-    private void FixedUpdate()
+    public void FixedUpdate()
     {
         //Regulate shooting speed
         fireTic++;
@@ -73,10 +76,16 @@ public class Weapon : MonoBehaviour
                 reloadTic = 0;
             }
         }
+
+        //if we have a point to anchor to
+        if (anchorPoint != null)
+        {
+            //transform.localPosition = anchorPoint.localPosition - handlePoint.localPosition;
+        }
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         //If we shoot
         if (Input.GetButton("Fire1"))
@@ -94,7 +103,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void Shoot()
+    public void Shoot()
     {
         switch (fireMode.shotType)
         {
@@ -125,19 +134,19 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void FireBullet(int bDmg, float bSpd, Vector2 bDir, float bScale = 1.0f, float bGrav = 0.0f)
+    public void FireBullet(int bDmg, float bSpd, Vector2 bDir, float bScale = 1.0f, float bGrav = 0.0f)
     {
         GameObject bullet = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         bullet.GetComponent<Bullet>().SetBulletParameters(bDmg, bSpd, bDir, bScale, bGrav);
         ammoCount--;
     }
 
-    private void SingleShot()
+    public void SingleShot()
     {
         FireBullet(fireMode.bulletDamage, fireMode.bulletSpeed, transform.right);
     }
 
-    private IEnumerator BurstShot()
+    public IEnumerator BurstShot()
     {
         for (int i = 0; i < fireMode.bulletSpecialAmount; i++)
         {
@@ -146,7 +155,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void SpreadShot()
+    public void SpreadShot()
     {
         for (int i = 0; i < fireMode.bulletSpecialAmount; i++)
         {
@@ -155,12 +164,12 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void ExplosiveShot()
+    public void ExplosiveShot()
     {
 
     }
 
-    private void HaloShot()
+    public void HaloShot()
     {
         float r = 360 / fireMode.bulletSpecialAmount;
         for (int i = 0; i < fireMode.bulletSpecialAmount; i++)
@@ -173,14 +182,14 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void GravShot()
+    public void GravShot()
     {
         FireBullet(fireMode.bulletDamage, fireMode.bulletSpeed, new Vector3(transform.right.x -0.5f, 0.5f, 0.0f), 1.0f, 20.0f);
     }
 
-    private void BigShot()
+    public void BigShot()
     {
-        FireBullet(fireMode.bulletDamage, fireMode.bulletSpeed, transform.right, 2.0f);
+        FireBullet(fireMode.bulletDamage, fireMode.bulletSpeed, transform.right, 2.5f);
     }
 
 }

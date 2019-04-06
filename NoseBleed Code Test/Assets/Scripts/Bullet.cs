@@ -30,10 +30,10 @@ public class Bullet : MonoBehaviour
         rb.gravityScale = bulletGravity;
     }
 
-    private void OnTriggerEnter2D(Collider2D otherObject)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         //Check to see if we hit an enemy object
-        Enemy enemy = otherObject.GetComponent<Enemy>();
+        Enemy enemy = collision.GetComponent<Enemy>();
         if(enemy != null)
         {
             enemy.TakeDamage(bulletDamage);
