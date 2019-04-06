@@ -83,8 +83,8 @@ public class PlayerController : MonoBehaviour
             gun.transform.SetParent(transform.Find("Guns"));
 
             //Set its position on the player
-            gun.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-            gun.transform.localPosition -= (gun.handlePoint.transform.localPosition/2);
+            Vector3 newPos = new Vector3(gun.handlePoint.transform.localPosition.x * gun.transform.localScale.x, gun.handlePoint.transform.localPosition.y * gun.transform.localScale.y, 0.0f);
+            gun.transform.localPosition = -newPos;
 
             //Flip the weapon so it faces the same direction as the player
             gun.transform.rotation = transform.rotation;

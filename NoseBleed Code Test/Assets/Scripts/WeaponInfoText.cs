@@ -15,11 +15,11 @@ public class WeaponInfoText : MonoBehaviour
             ammoText.text =
                 "WEAPON: " + weaponInfo.name +
                 "\nFIRE TYPE: " + weaponInfo.fireMode.shotType +
-                "\nCLIP: " + weaponInfo.ammoCount;
+                "\nCLIP: " + (weaponInfo.ammoCount <= 0 ? "RELOADING" : weaponInfo.ammoCount.ToString());
         } else
         {
             ammoText.text =
-                "NO WEAPON EQUIP!";
+                "NO WEAPON!";
         }
     }
 }
