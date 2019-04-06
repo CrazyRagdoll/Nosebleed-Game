@@ -8,5 +8,6 @@ public class Pistol : Weapon
     private void Start()
     {
         fireMode = new FireMode(ShotType.SINGLE, 25, 12, 50, 15, 0, 25);
+        weaponName = "Pistol";
     }
 }

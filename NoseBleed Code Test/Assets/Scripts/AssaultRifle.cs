@@ -7,6 +7,7 @@ public class AssaultRifle : Weapon
     private void Start()
     {
         fireMode = new FireMode(ShotType.SINGLE, 5, 30, 100, 20, 0, 25);
+        weaponName = "Assault Rifle";
     }
 
 }

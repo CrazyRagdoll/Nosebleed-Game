@@ -8,5 +8,6 @@ public class Halo : Weapon
     void Start()
     {
         fireMode = new FireMode(ShotType.HALO, 50, 80, 250, 25, 8, 15);
+        weaponName = "Halo";
     }
 }

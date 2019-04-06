@@ -8,5 +8,6 @@ public class Shotgun : Weapon
     private void Start()
     {
         fireMode = new FireMode(ShotType.SPREAD, 75, 24, 250, 15, 3, 25);
+        weaponName = "Shotgun";
     }
 }

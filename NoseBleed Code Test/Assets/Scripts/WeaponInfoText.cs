@@ -13,7 +13,7 @@ public class WeaponInfoText : MonoBehaviour
         Weapon weaponInfo = playerInfo.activeWeapon;
         if (weaponInfo != null) {
             ammoText.text =
-                "WEAPON: " + weaponInfo.name +
+                "WEAPON: " + weaponInfo.weaponName +
                 "\nFIRE TYPE: " + weaponInfo.fireMode.shotType +
                 "\nCLIP: " + (weaponInfo.ammoCount <= 0 ? "RELOADING" : weaponInfo.ammoCount.ToString());
         } else

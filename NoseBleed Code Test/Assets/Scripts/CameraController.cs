@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField]
-    GameObject CameraTarget;
+    public GameObject CameraTarget;
 
     //Gonna hard code some boundaries so the camera doesnt look outside of the world
     float maxX, minX, maxY, minY;
 
     void Start()
     {
-        //Hard coded for now, could make it dynamic by background width - camera width etc
-        minX = -13.8f; maxX = 13.8f;
-        minY = -1.97f; maxY = 5.76f;
+        minX = -13.8f;
+        maxX = 13.8f;
+        minY = -1.97f;
+        maxY = 5.76f;
     }
 
     // Update is called once per frame

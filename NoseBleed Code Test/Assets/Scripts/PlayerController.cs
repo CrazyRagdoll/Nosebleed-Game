@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     public CharacterController2D controller;
 
-    public int Health = 100;
+    public int Health = 250;
 
     public Weapon activeWeapon;
     static int activeWeaponID = 0;
@@ -19,7 +20,8 @@ public class PlayerController : MonoBehaviour
     {
         if(Health <= 0)
         {
-            //Game over
+            //Game over -- load start screen for now!
+            SceneManager.LoadScene(0);
         }
         
         //Cycle through the weapons

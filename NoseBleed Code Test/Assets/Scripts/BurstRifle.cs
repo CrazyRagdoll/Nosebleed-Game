@@ -8,5 +8,6 @@ public class BurstRifle : Weapon
     private void Start()
     {
         fireMode = new FireMode(ShotType.BURST, 75, 18, 150, 20, 3, 25);
+        weaponName = "Burst Rifle";
     }
 }

@@ -7,6 +7,7 @@ public class Weapon : MonoBehaviour
     public Transform handlePoint;
     public Transform firePoint;
     public GameObject bulletPrefab;
+    public string weaponName = "Default";
 
     //Shot type enum
     public enum ShotType
@@ -26,6 +27,7 @@ public class Weapon : MonoBehaviour
     }
 
     //Weapon firemode struct
+    [System.Serializable]
     public struct FireMode
     {
         public ShotType shotType;  //ShotType
@@ -50,7 +52,7 @@ public class Weapon : MonoBehaviour
     }
 
     //The weapons variables
-    public FireMode fireMode = new FireMode(ShotType.SINGLE, 25, 12, 50, 25, 0, 25);
+    public FireMode fireMode;
 
     //Used to moderate weapon functionality, delay shot speed, add reload timer and ammo etc
     int fireTic = 0, reloadTic = 0;
@@ -95,6 +97,20 @@ public class Weapon : MonoBehaviour
                 }
             }
         }
+
+        //Bouncy animation when idle
+        if (!transform.parent)
+        {
+            IdleAnim();
+        }
+
+    }
+
+    float anim;
+    void IdleAnim()
+    {
+        anim += 0.05f;
+        transform.localPosition += new Vector3(0.0f, (Mathf.Sin(anim)/50), 0.0f);
     }
 
     public void Shoot()
