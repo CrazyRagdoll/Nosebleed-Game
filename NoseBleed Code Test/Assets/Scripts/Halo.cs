@@ -7,7 +7,7 @@ public class Halo : Weapon
     // Start is called before the first frame update
     void Start()
     {
-        fireMode = new FireMode(ShotType.HALO, 50, 80, 250, 25, 8, 15);
+        fireMode = new FireMode(ShotType.HALO, 50, 80, 150, 25, 16, 15);
         weaponName = "Halo";
     }
 }

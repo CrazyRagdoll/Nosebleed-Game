@@ -7,7 +7,7 @@ public class Weapon : MonoBehaviour
     public Transform handlePoint;
     public Transform firePoint;
     public GameObject bulletPrefab;
-    public string weaponName = "Default";
+    public string weaponName = "Weapon";
 
     //Shot type enum
     public enum ShotType
@@ -169,7 +169,7 @@ public class Weapon : MonoBehaviour
     {
         for (int i = 0; i < fireMode.bulletSpecialAmount; i++)
         {
-            Vector3 newDir = new Vector3(transform.right.x, 0.5f - (1.0f * (i/(fireMode.bulletSpecialAmount-1.0f))), 0.0f);
+            Vector3 newDir = new Vector3(transform.right.x, 0.35f - (0.7f * (i/(fireMode.bulletSpecialAmount-1.0f))), 0.0f);
             FireBullet(fireMode.bulletDamage, fireMode.bulletSpeed, newDir.normalized);
         }
     }

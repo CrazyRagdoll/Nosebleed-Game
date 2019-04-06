@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public GameObject CameraTarget;
+    public GameController gameController;
 
     //Gonna hard code some boundaries so the camera doesnt look outside of the world
     float maxX, minX, maxY, minY;
 
+    Transform player;
+
+    private void Awake()
+    {
+        player = gameController.player.transform;
+    }
+
     void Start()
     {
-        minX = -13.8f;
-        maxX = 13.8f;
-        minY = -1.97f;
+        minX = -15.0f;
+        maxX = 15.0f;
+        minY = -2.0f;
         maxY = 5.76f;
     }
 
@@ -22,7 +29,7 @@ public class CameraController : MonoBehaviour
     {
         //Update the cameras position based on the player position!
         //Doing some simple checks so that the camera doesnt move off the "world"
-        Vector3 targetPos = CameraTarget.GetComponent<Transform>().position;
+        Vector3 targetPos = player.position;
         Vector3 newPos = targetPos + new Vector3(0.0f, 0.0f, -10.0f);
 
         //boundary checks

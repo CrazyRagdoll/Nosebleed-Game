@@ -5,21 +5,25 @@ using UnityEngine.UI;
 
 public class WeaponInfoText : MonoBehaviour
 {
-    public PlayerController playerInfo;
+    public GameController gameInfo;
     public Text ammoText;
 
     void Update()
     {
-        Weapon weaponInfo = playerInfo.activeWeapon;
+        Weapon weaponInfo = gameInfo.player.GetComponent<PlayerController>().activeWeapon;
         if (weaponInfo != null) {
             ammoText.text =
                 "WEAPON: " + weaponInfo.weaponName +
                 "\nFIRE TYPE: " + weaponInfo.fireMode.shotType +
-                "\nCLIP: " + (weaponInfo.ammoCount <= 0 ? "RELOADING" : weaponInfo.ammoCount.ToString());
+                "\nCLIP: " + (weaponInfo.ammoCount <= 0 ? "RELOADING" : weaponInfo.ammoCount.ToString()) +
+                "\nFIRE RATE: " + weaponInfo.fireMode.fireRate +
+                "\nRELOAD TIME: " + weaponInfo.fireMode.reloadTime + 
+                "\nBULLET DAMAGE: " + weaponInfo.fireMode.bulletDamage + 
+                "\nBULLET SPEED: " + weaponInfo.fireMode.bulletSpeed;
         } else
         {
             ammoText.text =
-                "NO WEAPON!";
+                "NO WEAPON! RUNNNNNNNNNNNNNNNNNN";
         }
     }
 }

@@ -7,18 +7,17 @@ public class PlayerController : MonoBehaviour
 {
     public CharacterController2D controller;
 
-    public int Health = 250;
+    public int health = 250;
 
     public Weapon activeWeapon;
-    static int activeWeaponID = 0;
-    static int numWeapons = 0;
+    public int activeWeaponID = 0;
+    public int numWeapons = 0;
 
     public Dictionary<int, Weapon> weapons = new Dictionary<int, Weapon>();
-
     // Update is called once per frame
     void Update()
     {
-        if(Health <= 0)
+        if(health <= 0)
         {
             //Game over -- load start screen for now!
             SceneManager.LoadScene(0);
@@ -72,7 +71,7 @@ public class PlayerController : MonoBehaviour
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
         if (enemy != null)
         {
-            Health -= enemy.power;
+            health -= enemy.power;
         }
     }
 

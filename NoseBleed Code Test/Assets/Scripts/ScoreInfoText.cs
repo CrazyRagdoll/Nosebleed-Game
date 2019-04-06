@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthInfoText : MonoBehaviour
+public class ScoreInfoText : MonoBehaviour
 {
     public GameController gameInfo;
     public Text text;
@@ -11,6 +11,8 @@ public class HealthInfoText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = "HEALTH: " + gameInfo.player.GetComponent<PlayerController>().health;
+        text.text = "LEVEL : " + gameInfo.level +
+        "\nSCORE: " + gameInfo.score + 
+        "\nENEMIES: " + gameInfo.enemyController.enemiesRemaining;
     }
 }
