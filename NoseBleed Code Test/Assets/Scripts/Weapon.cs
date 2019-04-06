@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public Transform anchorPoint;
     public Transform handlePoint;
     public Transform firePoint;
     public GameObject bulletPrefab;
@@ -56,6 +55,7 @@ public class Weapon : MonoBehaviour
     //Used to moderate weapon functionality, delay shot speed, add reload timer and ammo etc
     int fireTic = 0, reloadTic = 0;
     public int ammoCount = 0;
+    public bool isActive = false;
 
     //Use fixed update for tic updates
     public void FixedUpdate()
@@ -76,19 +76,13 @@ public class Weapon : MonoBehaviour
                 reloadTic = 0;
             }
         }
-
-        //if we have a point to anchor to
-        if (anchorPoint != null)
-        {
-            //transform.localPosition = anchorPoint.localPosition - handlePoint.localPosition;
-        }
     }
 
     // Update is called once per frame
     public void Update()
     {
         //If we shoot
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1") && isActive)
         {   
             //Do we have ammo?
             if(ammoCount > 0)

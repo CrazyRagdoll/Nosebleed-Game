@@ -10,12 +10,12 @@ public class WeaponInfoText : MonoBehaviour
 
     void Update()
     {
-        Weapon weaponInfo = playerInfo.currentWeapon.GetComponent<Weapon>();
+        Weapon weaponInfo = playerInfo.activeWeapon;
         if (weaponInfo != null) {
             ammoText.text =
                 "WEAPON: " + weaponInfo.name +
                 "\nFIRE TYPE: " + weaponInfo.fireMode.shotType +
-                "\nAMMO: " + weaponInfo.ammoCount;
+                "\nCLIP: " + weaponInfo.ammoCount;
         } else
         {
             ammoText.text =
