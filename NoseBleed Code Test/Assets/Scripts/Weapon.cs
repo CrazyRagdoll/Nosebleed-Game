@@ -85,12 +85,25 @@ public class Weapon : MonoBehaviour
     {
         //If we shoot
         if (Input.GetButton("Fire1") && isActive)
-        {   
+        {
             //Do we have ammo?
-            if(ammoCount > 0)
-            {  
+            if (ammoCount > 0)
+            {
                 //Are we trying to shoot too fast?
-                if(fireTic > fireMode.fireRate)
+                if (fireTic > fireMode.fireRate)
+                {
+                    Shoot();
+                    fireTic = 0;
+                }
+            }
+        }
+        else if (Input.GetAxis("Fire1") > 0 && isActive)
+        {
+            //Do we have ammo?
+            if (ammoCount > 0)
+            {
+                //Are we trying to shoot too fast?
+                if (fireTic > fireMode.fireRate)
                 {
                     Shoot();
                     fireTic = 0;

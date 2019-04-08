@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,13 +15,7 @@ public class PlayerController : MonoBehaviour
     public Dictionary<int, Weapon> weapons = new Dictionary<int, Weapon>();
     // Update is called once per frame
     void Update()
-    {
-        if(health <= 0)
-        {
-            //Game over -- load start screen for now!
-            SceneManager.LoadScene(0);
-        }
-        
+    {        
         //Cycle through the weapons
         if (Input.GetButtonDown("CycleDown"))
         {
