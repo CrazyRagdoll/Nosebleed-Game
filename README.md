@@ -2,23 +2,23 @@
 
 Controls
 PC:
-Move Left - A
-Move Right - D
-Jump - Space
-Shoot - Left Click
-Swap Weapon up - E
+Move Left - A,
+Move Right - D,
+Jump - Space,
+Shoot - Left Click,
+Swap Weapon up - E,
 Swap Weapon Down - Q
 
 X-Box:
-Move Left & Right - Left Stick
-Jump - A
-Shoot - Right Trigger
-Swap Weapon up - B
+Move Left & Right - Left Stick,
+Jump - A,
+Shoot - Right Trigger,
+Swap Weapon up - B,
 Swap Weapon Down - X
 
 Android/IOS:
-Movement - Touch Joystick
-Shoot - Bottom Right of Screen
+Movement - Touch Joystick,
+Shoot - Bottom Right of Screen,
 Swap Weapon - Top Right of Screen
 
 Acknowledgements
