@@ -10,7 +10,7 @@ public class JoystickScript : MonoBehaviour
 #if UNITY_STANDALONE
         gameObject.SetActive(false);
 #endif
-#if UNITY_ANDROID || IOS
+#if UNITY_ANDROID || UNITY_IOS
         gameObject.SetActive(true);
 #endif
     }

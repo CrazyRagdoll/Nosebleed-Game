@@ -5,11 +5,11 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     //Base values if none are given from weapon
-    public int bulletDamage = 25;
-    public float bulletSpeed = 25.0f;
-    public Vector2 bulletDirection = new Vector2(0.0f, 0.0f);
-    public float bulletScale = 1.0f;
-    public float bulletGravity = 0.0f;
+    private int bulletDamage = 25;
+    private float bulletSpeed = 25.0f;
+    private Vector2 bulletDirection = new Vector2(0.0f, 0.0f);
+    private float bulletScale = 1.0f;
+    private float bulletGravity = 0.0f;
    
     //Bullet rigid body reference
     public Rigidbody2D rb;

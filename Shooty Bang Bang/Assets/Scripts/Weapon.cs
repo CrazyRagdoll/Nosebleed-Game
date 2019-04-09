@@ -55,10 +55,10 @@ public class Weapon : MonoBehaviour
     public FireMode fireMode;
 
     //Used to moderate weapon functionality, delay shot speed, add reload timer and ammo etc
-    int fireTic = 0, reloadTic = 0;
+    private int fireTic = 0, reloadTic = 0;
     public int ammoCount = 0;
     public bool isActive = false;
-    public bool reloading = true;
+    private bool reloading = true;
 
     //Use fixed update for tic updates
     public void FixedUpdate()
@@ -89,7 +89,7 @@ public class Weapon : MonoBehaviour
             if (WeaponReady()) Shoot();
         }
 #endif
-#if UNITY_ANDROID || IOS
+#if UNITY_ANDROID || UNITY_IOS
         //Touch the bottom right hand side of the screen to shoot with android
         for (int i = 0; i < Input.touchCount; i++)
         {
@@ -112,14 +112,14 @@ public class Weapon : MonoBehaviour
     }
 
     float anim;
-    void IdleAnim()
+    private void IdleAnim()
     {
         anim += 0.05f;
         transform.localPosition += new Vector3(0.0f, (Mathf.Sin(anim)/50), 0.0f);
     }
 
     //Check the ammo and the fire rates.
-    public bool WeaponReady()
+    private bool WeaponReady()
     {
         //Do we have ammo?
         if (ammoCount > 0)
@@ -137,7 +137,7 @@ public class Weapon : MonoBehaviour
         return false;
     }
 
-    public void Shoot()
+    private void Shoot()
     {
         switch (fireMode.shotType)
         {
@@ -171,7 +171,7 @@ public class Weapon : MonoBehaviour
         fireTic = 0;
     }
 
-    public void ReloadWeapon()
+    private void ReloadWeapon()
     {
         //Start reloading
         reloadTic++;
@@ -185,19 +185,19 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public void FireBullet(int bDmg, float bSpd, Vector2 bDir, float bScale = 1.0f, float bGrav = 0.0f)
+    private void FireBullet(int bDmg, float bSpd, Vector2 bDir, float bScale = 1.0f, float bGrav = 0.0f)
     {
         GameObject bullet = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         bullet.GetComponent<Bullet>().SetBulletParameters(bDmg, bSpd, bDir, bScale, bGrav);
         ammoCount--;
     }
 
-    public void SingleShot()
+    private void SingleShot()
     {
         FireBullet(fireMode.bulletDamage, fireMode.bulletSpeed, transform.right);
     }
 
-    public IEnumerator BurstShot()
+    private IEnumerator BurstShot()
     {
         for (int i = 0; i < fireMode.bulletSpecialAmount; i++)
         {
@@ -206,7 +206,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public void SpreadShot()
+    private void SpreadShot()
     {
         for (int i = 0; i < fireMode.bulletSpecialAmount; i++)
         {
@@ -215,12 +215,12 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public void ExplosiveShot()
+    private void ExplosiveShot()
     {
 
     }
 
-    public void HaloShot()
+    private void HaloShot()
     {
         float r = 360 / fireMode.bulletSpecialAmount;
         for (int i = 0; i < fireMode.bulletSpecialAmount; i++)
@@ -233,12 +233,12 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public void GravShot()
+    private void GravShot()
     {
         FireBullet(fireMode.bulletDamage, fireMode.bulletSpeed, new Vector3(transform.right.x -0.5f, 0.5f, 0.0f), 1.0f, 20.0f);
     }
 
-    public void BigShot()
+    private void BigShot()
     {
         FireBullet(fireMode.bulletDamage, fireMode.bulletSpeed, transform.right, 2.5f);
     }

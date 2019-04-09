@@ -10,14 +10,14 @@ public class GameController : MonoBehaviour
 
     public int level;
     public int score;
-    public float difficultyMod = 1.5f;
+    private float difficultyMod = 1.5f;
     public float levelTimer = 0;
-    float levelDelay = 5;
+    private float levelDelay = 5;
 
     // Start is called before the first frame update
     void Start()
     {
-        level = 1;
+        level = 0;
         enemyController.SpawnEnemiesInLevel(Mathf.CeilToInt(level * difficultyMod));
     }
 
@@ -34,7 +34,7 @@ public class GameController : MonoBehaviour
             SceneManager.LoadScene(0);
         }
 
-        if(enemyController.enemiesRemaining <= 0)
+        if(enemyController.enemies.Count == 0)
         {
             levelTimer += Time.deltaTime;
             if (levelTimer >= levelDelay)

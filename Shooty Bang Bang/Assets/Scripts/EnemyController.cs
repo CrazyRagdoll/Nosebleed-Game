@@ -10,7 +10,7 @@ public class EnemyController : MonoBehaviour
 
     List<Vector3> spawnlocations = new List<Vector3>();
 
-    public int enemiesRemaining = 0;
+    public List<GameObject> enemies = new List<GameObject>();
 
     private void Awake()
     {
@@ -32,41 +32,42 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            //Spawn in lots and then after a delay!
+            //Spawn in lots and then some after a delay!
             InstantSpawnEnemies(10);
             StartCoroutine(DelayedSpawnEnemies(numEnemies - 10, 1.0f));
         }
     }
 
+    private void SpawnEnemy()
+    {
+        //Grab a random spawn point in the map
+        int spawnPoint = Random.Range(0, spawnlocations.Count);
+
+        //Spawn an enemy 
+        enemies.Add(Instantiate(enemy, spawnlocations[spawnPoint], Quaternion.identity));
+    }
+
+    public void DespawnEnemy(GameObject go)
+    {
+        enemies.Remove(go);
+    }
+
     //Instantly spawn a bunch of peoples
-    public void InstantSpawnEnemies(int numEnemies)
+    private void InstantSpawnEnemies(int numEnemies)
     {
         for (int i = 0; i < numEnemies; i++)
-        { 
-            //Grab a random spawn point in the map
-            int spawnPoint = Random.Range(0, spawnlocations.Count); 
-
-            //Spawn an enemy there!
-            Instantiate(enemy, spawnlocations[spawnPoint], Quaternion.identity);
-
-            enemiesRemaining++;
+        {
+            SpawnEnemy();
         }
     }
 
     //Spawn on a timer
-    public IEnumerator DelayedSpawnEnemies(int numEnemies, float delay)
+    private IEnumerator DelayedSpawnEnemies(int numEnemies, float delay)
     {
         for (int i = 0; i < numEnemies; i++)
         {
-            //Grab a random spawn point in the map
-            int spawnPoint = Random.Range(0, spawnlocations.Count);
+            SpawnEnemy();
 
-            //Spawn an enemy there!
-            Instantiate(enemy, spawnlocations[spawnPoint], Quaternion.identity);
-
-            enemiesRemaining++;
-
-            //Delay
             yield return new WaitForSeconds(delay);
         }
     }

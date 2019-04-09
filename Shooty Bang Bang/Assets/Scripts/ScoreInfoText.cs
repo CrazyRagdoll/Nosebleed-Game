@@ -13,6 +13,6 @@ public class ScoreInfoText : MonoBehaviour
     {
         text.text = "LEVEL : " + gameInfo.level +
         "\nSCORE: " + gameInfo.score + 
-        "\nENEMIES: " + gameInfo.enemyController.enemiesRemaining;
+        "\nENEMIES: " + gameInfo.enemyController.enemies.Count;
     }
 }

@@ -23,7 +23,7 @@ public class WeaponInfoText : MonoBehaviour
         } else
         {
             ammoText.text =
-                "NO WEAPON! RUNNNNNNNNNNNNNNNNNN";
+                "NO WEAPON! \n\nRUNNNNNNNNNNNNNNNNNN...";
         }
     }
 }

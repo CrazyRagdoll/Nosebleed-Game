@@ -12,9 +12,9 @@ public class Enemy : MonoBehaviour
 
     public int health = 100;
     public int power = 25;
-    public int moveSpeed = 40;
+    private int moveSpeed = 40;
 
-    int jumpDelay = 0;
+    private int jumpDelay = 0;
 
     public GameObject deathEffect;
 
@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
         MoveEnemy();
     }
 
-    public void MoveEnemy()
+    private void MoveEnemy()
     {
         Vector3 dirToPlayer = player.position - transform.position;
 
@@ -63,20 +63,21 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void Die()
+    private void Die()
     {
         //Chance to spawn health
-        if(Random.Range(0, 100) >= 0)
+        if (Random.Range(0, 100) >= 80)
         {
             Instantiate(heartObject, transform.position, Quaternion.identity);
         }
         
         //Death EXPLOSIONS
         Instantiate(deathEffect, transform.position, Quaternion.identity);
+        
+        //Remove itself from the list
+        enemyController.DespawnEnemy(gameObject);
 
         //Destroy the enemy 
         Destroy(gameObject);
-
-        enemyController.enemiesRemaining--;
     }
 }

@@ -18,6 +18,7 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
+        //Hard coded world parameters 
         minX = -15.0f;
         maxX = 15.0f;
         minY = -2.0f;
